@@ -11,12 +11,15 @@ export default function Ship(name) {
     return null;
   }
   const length = setShipLength();
+  const hitPoints = length;
 
   const getName = () => name;
   const getLength = () => length;
+  const getHitPoints = () => hitPoints;
 
   return {
     getName,
     getLength,
+    getHitPoints,
   };
 }
