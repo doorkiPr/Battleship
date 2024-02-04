@@ -20,10 +20,12 @@ export default function Ship(name) {
     if (hitPoints === 0) throw new Error("Ship is already at 0 hitpoints");
     hitPoints -= 1;
   }
+  const isSunk = () => hitPoints === 0;
   return {
     getName,
     getLength,
     getHitPoints,
     hit,
+    isSunk,
   };
 }
