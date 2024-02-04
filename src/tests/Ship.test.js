@@ -40,3 +40,30 @@ test("Throws Error if argument is not a string ", () => {
 test("returns the correct hitPoints ", () => {
   expect(new Ship("Destroyer").getHitPoints()).toBe(2);
 });
+
+test("returns the correct hitPoints after being hit once ", () => {
+  const testShip = new Ship("Destroyer");
+  testShip.hit();
+  expect(testShip.getHitPoints()).toBe(1);
+});
+test("returns the correct hitPoints after being hit multiple Times ", () => {
+  const testShip = new Ship("Carrier");
+  testShip.hit();
+  testShip.hit();
+  testShip.hit();
+  expect(testShip.getHitPoints()).toBe(2);
+});
+test("returns the correct hitPoints after being hit until no hitPoints are left ", () => {
+  const testShip = new Ship("Destroyer");
+  testShip.hit();
+  testShip.hit();
+  expect(testShip.getHitPoints()).toBe(0);
+});
+test("throws an Error if you try to hit the ship after reaching 0 hitPoints ", () => {
+  const testShip = new Ship("Destroyer");
+  expect(() => {
+    testShip.hit();
+    testShip.hit();
+    testShip.hit();
+  }).toThrow("Ship is already at 0 hitpoints");
+});
