@@ -67,3 +67,15 @@ test("throws an Error if you try to hit the ship after reaching 0 hitPoints ", (
     testShip.hit();
   }).toThrow("Ship is already at 0 hitpoints");
 });
+
+test("returns true when ship hitPoints reach 0 ", () => {
+  const testShip = new Ship("Destroyer");
+  testShip.hit();
+  testShip.hit();
+  expect(testShip.isSunk()).toBe(true);
+});
+test("returns false if ship hitPoints haven't reached 0 ", () => {
+  const testShip = new Ship("Destroyer");
+  testShip.hit();
+  expect(testShip.isSunk()).toBe(false);
+});
