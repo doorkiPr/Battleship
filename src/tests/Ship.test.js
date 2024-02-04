@@ -26,15 +26,17 @@ test("Throws Error if argument is a wrong name", () => {
     new Ship("Caravane");
   }).toThrow("Name isn't valid");
 });
-
 test("Throws Error if no argument is passed ", () => {
   expect(() => {
     new Ship();
   }).toThrow("Name isn't valid");
 });
-
 test("Throws Error if argument is not a string ", () => {
   expect(() => {
     new Ship(5);
   }).toThrow("Name isn't valid");
+});
+
+test("returns the correct hitPoints ", () => {
+  expect(new Ship("Destroyer").getHitPoints()).toBe(2);
 });
