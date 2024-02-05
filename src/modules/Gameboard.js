@@ -5,9 +5,12 @@ export default function Gameboard(name) {
   }
   const getName = () => name.toString();
   const getGameboardArray = () => gameBoardArray;
-
+  function placeShip(ship, y, x) {
+    gameBoardArray[y].splice(x, 1, ship);
+  }
   return {
     getGameboardArray,
     getName,
+    placeShip,
   };
 }
