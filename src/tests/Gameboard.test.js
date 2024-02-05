@@ -24,3 +24,14 @@ test("returns ship when placed in the gameboard", () => {
 
   expect(testGameboard.getGameboardArray()[1][2]).toBe(myShip);
 });
+
+test("ignores second ship if it's placed on the same coordinates as the first one", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Carrier");
+  const secondShip = new Ship("Submarine");
+
+  testGameboard.placeShip(myShip, 1, 2);
+  testGameboard.placeShip(secondShip, 1, 2);
+
+  expect(testGameboard.getGameboardArray()[1][2]).toBe(myShip);
+});
