@@ -7,7 +7,9 @@ export default function Gameboard(name) {
   const getGameboardArray = () => gameBoardArray;
   function placeShip(ship, y, x) {
     if (gameBoardArray[y][x]) return;
-    gameBoardArray[y].splice(x, 1, ship);
+    for (let i = 0; i < ship.getLength(); i += 1) {
+      gameBoardArray[y].splice(x + i, 1, ship); // spans ship across the gameboard cells depedning on it's length
+    }
   }
   return {
     getGameboardArray,
