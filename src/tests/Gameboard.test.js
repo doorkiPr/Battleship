@@ -25,6 +25,23 @@ test("returns ship when placed in the gameboard", () => {
   expect(testGameboard.getGameboardArray()[1][2]).toBe(myShip);
 });
 
+test("make sure the ship spans across the gameboard depending on it's length", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Destroyer");
+
+  testGameboard.placeShip(myShip, 1, 2);
+
+  expect(testGameboard.getGameboardArray()[1][2]).toBe(myShip);
+  expect(testGameboard.getGameboardArray()[1][3]).toBe(myShip);
+});
+test("make sure the ship dosen't span more then it's length", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Destroyer");
+
+  testGameboard.placeShip(myShip, 1, 2);
+  expect(testGameboard.getGameboardArray()[1][4]).toBe(null);
+});
+
 test("ignores second ship if it's placed on the same coordinates as the first one", () => {
   const testGameboard = new Gameboard("testing");
   const myShip = new Ship("Carrier");
