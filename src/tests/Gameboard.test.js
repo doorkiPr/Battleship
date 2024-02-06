@@ -153,3 +153,21 @@ test("ignores second ship if it's placed on the same coordinates as the first on
 
   expect(testGameboard.getGameboardArray()[1][2]).toBe(myShip);
 });
+
+test("ship returns correct hitpoints after being hit", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Carrier");
+  testGameboard.placeShip(myShip, 1, 2);
+  testGameboard.receiveAttack(1, 2);
+
+  expect(testGameboard.getGameboardArray()[1][2].getHitPoints()).toBe(4);
+});
+test("ship returns correct hitpoints after being hit multiple times", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Carrier");
+  testGameboard.placeShip(myShip, 1, 2);
+  testGameboard.receiveAttack(1, 2);
+  testGameboard.receiveAttack(1, 3);
+  testGameboard.receiveAttack(1, 4);
+  expect(testGameboard.getGameboardArray()[1][2].getHitPoints()).toBe(2);
+});
