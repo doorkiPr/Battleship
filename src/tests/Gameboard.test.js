@@ -186,3 +186,27 @@ test("correctly returns missed attacks", () => {
   testGameboard.receiveAttack(2, 4);
   expect(testGameboard.getGameboardArray()[2][4]).toBe("missed");
 });
+
+test(" returns true if all ships are sunk", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Destroyer");
+  const secondShip = new Ship("Destroyer");
+  testGameboard.placeShip(myShip, 1, 2);
+  testGameboard.placeShip(secondShip, 5, 1, "vertical");
+  testGameboard.receiveAttack(1, 2);
+  testGameboard.receiveAttack(1, 3);
+  testGameboard.receiveAttack(5, 1);
+  testGameboard.receiveAttack(6, 1);
+  expect(testGameboard.areAllSunk()).toBe(true);
+});
+test(" returns false if not all ships are sunk", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Destroyer");
+  const secondShip = new Ship("Destroyer");
+  testGameboard.placeShip(myShip, 1, 2);
+  testGameboard.placeShip(secondShip, 5, 1, "vertical");
+  testGameboard.receiveAttack(1, 2);
+  testGameboard.receiveAttack(1, 3);
+  testGameboard.receiveAttack(5, 1);
+  expect(testGameboard.areAllSunk()).toBe(false);
+});
