@@ -25,6 +25,14 @@ test("returns ship when placed in the gameboard", () => {
   expect(testGameboard.getGameboardArray()[1][2]).toBe(myShip);
 });
 
+test("returns ship when placed in the gameboard", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Destroyer");
+
+  testGameboard.placeShip(myShip, 0, 2, "vertical");
+
+  expect(testGameboard.getGameboardArray()[0][2]).toBe(myShip);
+});
 test("make sure the ship spans across the gameboard depending on it's length", () => {
   const testGameboard = new Gameboard("testing");
   const myShip = new Ship("Destroyer");
@@ -41,6 +49,33 @@ test("make sure the ship dosen't span more then it's length", () => {
   testGameboard.placeShip(myShip, 1, 2);
   expect(testGameboard.getGameboardArray()[1][4]).toBe(null);
 });
+test("make sure the ship spans across the gameboard depending on it's length in the VERTICAL axis", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Destroyer");
+
+  testGameboard.placeShip(myShip, 0, 2, "vertical");
+
+  expect(testGameboard.getGameboardArray()[0][2]).toBe(myShip);
+  expect(testGameboard.getGameboardArray()[1][2]).toBe(myShip);
+});
+test("make sure the ship spans across the gameboard depending on it's length in the VERTICAL axis", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Cruiser");
+
+  testGameboard.placeShip(myShip, 3, 0, "vertical");
+
+  expect(testGameboard.getGameboardArray()[3][0]).toBe(myShip);
+  expect(testGameboard.getGameboardArray()[4][0]).toBe(myShip);
+  expect(testGameboard.getGameboardArray()[5][0]).toBe(myShip);
+});
+test("make sure the ship dosen't span more then it's length in the VERTICAL axis", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Cruiser");
+
+  testGameboard.placeShip(myShip, 3, 0, "vertical");
+  expect(testGameboard.getGameboardArray()[6][0]).toBe(null);
+});
+
 test("don't place ship if there's no place in the gameArray", () => {
   const testGameboard = new Gameboard("testing");
   const myShip = new Ship("Destroyer");
