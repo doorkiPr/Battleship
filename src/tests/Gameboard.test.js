@@ -41,6 +41,29 @@ test("make sure the ship dosen't span more then it's length", () => {
   testGameboard.placeShip(myShip, 1, 2);
   expect(testGameboard.getGameboardArray()[1][4]).toBe(null);
 });
+test("don't place ship if there's no place in the gameArray", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Destroyer");
+
+  testGameboard.placeShip(myShip, 1, 9);
+  expect(testGameboard.getGameboardArray()[1][9]).toBe(null);
+});
+test("don't place ship if there's no place in the gameArray", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Carrier");
+
+  testGameboard.placeShip(myShip, 1, 6);
+  expect(testGameboard.getGameboardArray()[1][6]).toBe(null);
+});
+test("ignore second ship  if it's gonna span into first ship", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Carrier");
+  const anotherShip = new Ship("Destroyer");
+
+  testGameboard.placeShip(myShip, 1, 5);
+  testGameboard.placeShip(anotherShip, 1, 4);
+  expect(testGameboard.getGameboardArray()[1][4]).toBe(null);
+});
 
 test("ignores second ship if it's placed on the same coordinates as the first one", () => {
   const testGameboard = new Gameboard("testing");
