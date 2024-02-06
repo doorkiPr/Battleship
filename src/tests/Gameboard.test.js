@@ -110,6 +110,20 @@ test("don't place ship if there's no place in the gameArray", () => {
   testGameboard.placeShip(myShip, 1, 6);
   expect(testGameboard.getGameboardArray()[1][6]).toBe(null);
 });
+test("don't place ship if there's no place in the gameArray", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Destroyer");
+
+  testGameboard.placeShip(myShip, 9, 3, "vertical");
+  expect(testGameboard.getGameboardArray()[9][3]).toBe(null);
+});
+test("don't place ship if there's no place in the gameArray on Vertical Axis", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Carrier");
+
+  testGameboard.placeShip(myShip, 6, 2, "vertical");
+  expect(testGameboard.getGameboardArray()[6][2]).toBe(null);
+});
 test("ignore second ship  if it's gonna span into first ship", () => {
   const testGameboard = new Gameboard("testing");
   const myShip = new Ship("Carrier");
