@@ -171,3 +171,11 @@ test("ship returns correct hitpoints after being hit multiple times", () => {
   testGameboard.receiveAttack(1, 4);
   expect(testGameboard.getGameboardArray()[1][2].getHitPoints()).toBe(2);
 });
+test("don't regitster attack if coordinates already hit", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Destroyer");
+  testGameboard.placeShip(myShip, 1, 2);
+  testGameboard.receiveAttack(1, 2);
+  testGameboard.receiveAttack(1, 2);
+  expect(testGameboard.getGameboardArray()[1][2].getHitPoints()).toBe(1);
+});
