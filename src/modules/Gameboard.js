@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 export default function Gameboard(name) {
   const gameBoardArray = [];
+  const receivedCoordinatesArray = [];
   for (let y = 0; y < 10; y += 1) {
     gameBoardArray.push(new Array(10).fill(null));
   }
@@ -26,7 +27,9 @@ export default function Gameboard(name) {
   }
 
   function receiveAttack(y, x) {
+    if (receivedCoordinatesArray.find((coordinates) => coordinates.y === y && coordinates.x === x)) return; // check if coordinates exist in array
     if (gameBoardArray[y][x] === "missed") return;
+    receivedCoordinatesArray.push({ y, x });
     if (!gameBoardArray[y][x]) gameBoardArray[y].splice(x, 1, "missed");
     if (gameBoardArray[y][x]) gameBoardArray[y][x].hit();
   }
