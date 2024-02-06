@@ -75,6 +75,26 @@ test("make sure the ship dosen't span more then it's length in the VERTICAL axis
   testGameboard.placeShip(myShip, 3, 0, "vertical");
   expect(testGameboard.getGameboardArray()[6][0]).toBe(null);
 });
+test("ship only spans in VERTICAL axis", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Cruiser");
+
+  testGameboard.placeShip(myShip, 3, 0, "vertical");
+  expect(testGameboard.getGameboardArray()[3][0]).toBe(myShip);
+  expect(testGameboard.getGameboardArray()[4][0]).toBe(myShip);
+  expect(testGameboard.getGameboardArray()[5][0]).toBe(myShip);
+  expect(testGameboard.getGameboardArray()[3][1]).toBe(null);
+});
+test("ship only spans in HORIZONTAL axis", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Cruiser");
+
+  testGameboard.placeShip(myShip, 3, 0);
+  expect(testGameboard.getGameboardArray()[3][0]).toBe(myShip);
+  expect(testGameboard.getGameboardArray()[3][1]).toBe(myShip);
+  expect(testGameboard.getGameboardArray()[3][2]).toBe(myShip);
+  expect(testGameboard.getGameboardArray()[4][0]).toBe(null);
+});
 
 test("don't place ship if there's no place in the gameArray", () => {
   const testGameboard = new Gameboard("testing");
