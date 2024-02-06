@@ -110,7 +110,7 @@ test("don't place ship if there's no place in the gameArray", () => {
   testGameboard.placeShip(myShip, 1, 6);
   expect(testGameboard.getGameboardArray()[1][6]).toBe(null);
 });
-test("don't place ship if there's no place in the gameArray", () => {
+test("don't place ship if there's no place in the gameArray on Verticl Axis", () => {
   const testGameboard = new Gameboard("testing");
   const myShip = new Ship("Destroyer");
 
