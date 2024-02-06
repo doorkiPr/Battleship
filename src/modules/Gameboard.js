@@ -10,6 +10,8 @@ export default function Gameboard(name) {
   function placeShip(ship, y, x, axis = "horizontal") {
     if (gameBoardArray[y][x]) return;
     if (axis === "vertical") {
+      if (gameBoardArray[y + ship.getLength() - 1] === undefined) return; // if ship spans across a cell that is out of limits don't place it
+
       for (let i = 0; i < ship.getLength(); i += 1) {
         gameBoardArray[y + i].splice(x, 1, ship); // itterate through each row , replace element with an index of X by ship object
       }
