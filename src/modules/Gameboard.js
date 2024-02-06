@@ -31,7 +31,7 @@ export default function Gameboard(name) {
     if (gameBoardArray[y][x] === "missed") return;
     receivedCoordinatesArray.push({ y, x });
     if (!gameBoardArray[y][x]) gameBoardArray[y].splice(x, 1, "missed");
-    if (gameBoardArray[y][x]) gameBoardArray[y][x].hit();
+    if (gameBoardArray[y][x] !== "missed") gameBoardArray[y][x].hit();
   }
 
   return {
