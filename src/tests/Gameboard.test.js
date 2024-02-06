@@ -179,3 +179,10 @@ test("don't regitster attack if coordinates already hit", () => {
   testGameboard.receiveAttack(1, 2);
   expect(testGameboard.getGameboardArray()[1][2].getHitPoints()).toBe(1);
 });
+test("correctly returns missed attacks", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Destroyer");
+  testGameboard.placeShip(myShip, 1, 2);
+  testGameboard.receiveAttack(2, 4);
+  expect(testGameboard.getGameboardArray()[2][4]).toBe("missed");
+});
