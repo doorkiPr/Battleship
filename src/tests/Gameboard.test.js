@@ -196,6 +196,20 @@ test("receiveAttack returns false if the attack is not valid ", () => {
 
   expect(testGameboard.receiveAttack(1, 2)).toBe(false);
 });
+test("receiveAttack returns false if the attack is not valid (out of bounds X axis) ", () => {
+  const testGameboard = Gameboard("testing");
+  const myShip = Ship("Destroyer");
+  testGameboard.placeShip(myShip, 1, 2);
+
+  expect(testGameboard.receiveAttack(1, 11)).toBe(false);
+});
+test("receiveAttack returns false if the attack is not valid (out of bounds Y axis) ", () => {
+  const testGameboard = Gameboard("testing");
+  const myShip = Ship("Destroyer");
+  testGameboard.placeShip(myShip, 1, 2);
+
+  expect(testGameboard.receiveAttack(11, 0)).toBe(false);
+});
 test("correctly returns missed attacks", () => {
   const testGameboard = Gameboard("testing");
   const myShip = Ship("Destroyer");
