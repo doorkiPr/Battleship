@@ -47,6 +47,12 @@ test("placeShip returns false when ship placement is not valid", () => {
 
   expect(testGameboard.placeShip(myShip, 1, 9)).toBe(false);
 });
+test("placeShip returns false when ship placement is not valid (out of bounds)", () => {
+  const testGameboard = Gameboard("testing");
+  const myShip = Ship("Destroyer");
+
+  expect(testGameboard.placeShip(myShip, 11, 2)).toBe(false);
+});
 test("make sure the ship spans across the gameboard depending on it's length", () => {
   const testGameboard = Gameboard("testing");
   const myShip = Ship("Destroyer");
