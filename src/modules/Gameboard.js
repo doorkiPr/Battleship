@@ -29,6 +29,7 @@ export default function Gameboard(name) {
   }
 
   function receiveAttack(y, x) {
+    if (y < 0 || y > 10 || x < 0 || x > 10) return false;
     if (receivedCoordinatesArray.find((coordinates) => coordinates.y === y && coordinates.x === x))
       return false; // check if coordinates exist in array
     if (gameBoardArray[y][x] === "missed") return false;
