@@ -9,8 +9,8 @@ export default function Gameboard(name) {
   const getName = () => name.toString();
   const getGameboardArray = () => gameBoardArray;
   function placeShip(ship, y, x, axis = "horizontal") {
+    if (y < 0 || y > 10 || x < 0 || x > 10) return false;
     if (gameBoardArray[y][x]) return false;
-
     if (axis === "vertical") {
       if (gameBoardArray[y + ship.getLength() - 1] === undefined) return false; // if ship spans across a cell that is out of limits don't place it
       if (gameBoardArray[y + ship.getLength() - 1][x] !== null) return false; // if ship spans across a cell that is not empty don't place it
