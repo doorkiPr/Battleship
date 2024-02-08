@@ -35,6 +35,18 @@ test("returns ship when placed in the gameboard", () => {
 
   expect(testGameboard.getGameboardArray()[0][2]).toBe(myShip);
 });
+test("placeShip returns true when ship placement is valid", () => {
+  const testGameboard = Gameboard("testing");
+  const myShip = Ship("Destroyer");
+
+  expect(testGameboard.placeShip(myShip, 0, 2, "vertical")).toBe(true);
+});
+test("placeShip returns false when ship placement is not valid", () => {
+  const testGameboard = Gameboard("testing");
+  const myShip = Ship("Destroyer");
+
+  expect(testGameboard.placeShip(myShip, 1, 9)).toBe(false);
+});
 test("make sure the ship spans across the gameboard depending on it's length", () => {
   const testGameboard = Gameboard("testing");
   const myShip = Ship("Destroyer");
