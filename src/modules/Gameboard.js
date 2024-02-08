@@ -8,7 +8,6 @@ export default function Gameboard(name) {
   }
   const getName = () => name.toString();
   const getGameboardArray = () => gameBoardArray;
-
   function placeShip(ship, y, x, axis = "horizontal") {
     if (gameBoardArray[y][x]) return;
 
@@ -30,11 +29,13 @@ export default function Gameboard(name) {
   }
 
   function receiveAttack(y, x) {
-    if (receivedCoordinatesArray.find((coordinates) => coordinates.y === y && coordinates.x === x)) return; // check if coordinates exist in array
-    if (gameBoardArray[y][x] === "missed") return;
+    if (receivedCoordinatesArray.find((coordinates) => coordinates.y === y && coordinates.x === x))
+      return false; // check if coordinates exist in array
+    if (gameBoardArray[y][x] === "missed") return false;
     receivedCoordinatesArray.push({ y, x });
     if (!gameBoardArray[y][x]) gameBoardArray[y].splice(x, 1, "missed");
     if (gameBoardArray[y][x] !== "missed") gameBoardArray[y][x].hit();
+    return true;
   }
 
   function areAllSunk() {
