@@ -179,6 +179,21 @@ test("don't regitster attack if coordinates already hit", () => {
   testGameboard.receiveAttack(1, 2);
   expect(testGameboard.getGameboardArray()[1][2].getHitPoints()).toBe(1);
 });
+test("receiveAttack returns true if the attack is valid ", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Carrier");
+  testGameboard.placeShip(myShip, 1, 2);
+
+  expect(testGameboard.receiveAttack(1, 2)).toBe(true);
+});
+test("receiveAttack returns false if the attack is not valid ", () => {
+  const testGameboard = new Gameboard("testing");
+  const myShip = new Ship("Destroyer");
+  testGameboard.placeShip(myShip, 1, 2);
+  testGameboard.receiveAttack(1, 2);
+
+  expect(testGameboard.receiveAttack(1, 2)).toBe(false);
+});
 test("correctly returns missed attacks", () => {
   const testGameboard = new Gameboard("testing");
   const myShip = new Ship("Destroyer");
