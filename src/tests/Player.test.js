@@ -47,3 +47,10 @@ test("hasWon returns false if enemy ships aren't all sunk ", () => {
 
   expect(player1.hasWon(player2)).toBe(false);
 });
+test("turn returns correct value", () => {
+  const player1 = Player("playerOne", Gameboard);
+  const player2 = Player("playerTwo", Gameboard, false);
+
+  expect(player1.getTurn()).toBe(true);
+  expect(player2.getTurn()).toBe(false);
+});
