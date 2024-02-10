@@ -54,3 +54,8 @@ test("turn returns correct value", () => {
   expect(player1.getTurn()).toBe(true);
   expect(player2.getTurn()).toBe(false);
 });
+test("turn returns correct value when toggled", () => {
+  const player1 = Player("playerOne", Gameboard);
+  player1.toggleTurn();
+  expect(player1.getTurn()).toBe(false);
+});
