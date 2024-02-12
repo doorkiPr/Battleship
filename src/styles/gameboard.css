@@ -1,0 +1,25 @@
+.gameboadContainer {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+.gameBoard {
+  height: 500px;
+  width: 500px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
+.cell {
+  border: black 1px solid;
+}
+.cell:hover {
+  background-color: blueviolet;
+  cursor: crosshair;
+}
+@media only screen and (max-width: 600px) {
+  .gameBoard {
+    height: 300px;
+    width: 300px;
+  }
+}
