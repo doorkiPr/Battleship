@@ -180,7 +180,7 @@ test("ship returns correct hitpoints after being hit", () => {
   testGameboard.placeShip(myShip, 1, 2);
   testGameboard.receiveAttack(1, 2);
 
-  expect(testGameboard.getGameboardArray()[1][2].getHitPoints()).toBe(4);
+  expect(testGameboard.getGameboardArray()[1][2].ship.getHitPoints()).toBe(4);
 });
 test("ship returns correct hitpoints after being hit multiple times", () => {
   const testGameboard = Gameboard("testing");
@@ -189,7 +189,7 @@ test("ship returns correct hitpoints after being hit multiple times", () => {
   testGameboard.receiveAttack(1, 2);
   testGameboard.receiveAttack(1, 3);
   testGameboard.receiveAttack(1, 4);
-  expect(testGameboard.getGameboardArray()[1][2].getHitPoints()).toBe(2);
+  expect(testGameboard.getGameboardArray()[1][2].ship.getHitPoints()).toBe(2);
 });
 test("don't regitster attack if coordinates already hit", () => {
   const testGameboard = Gameboard("testing");
@@ -197,7 +197,7 @@ test("don't regitster attack if coordinates already hit", () => {
   testGameboard.placeShip(myShip, 1, 2);
   testGameboard.receiveAttack(1, 2);
   testGameboard.receiveAttack(1, 2);
-  expect(testGameboard.getGameboardArray()[1][2].getHitPoints()).toBe(1);
+  expect(testGameboard.getGameboardArray()[1][2].ship.getHitPoints()).toBe(1);
 });
 test("receiveAttack returns true if the attack is valid ", () => {
   const testGameboard = Gameboard("testing");
@@ -234,6 +234,13 @@ test("correctly returns missed attacks", () => {
   testGameboard.placeShip(myShip, 1, 2);
   testGameboard.receiveAttack(2, 4);
   expect(testGameboard.getGameboardArray()[2][4]).toBe("missed");
+});
+test("correctly returns ships parts that are hit", () => {
+  const testGameboard = Gameboard("testing");
+  const myShip = Ship("Destroyer");
+  testGameboard.placeShip(myShip, 1, 2);
+  testGameboard.receiveAttack(1, 2);
+  expect(testGameboard.getGameboardArray()[1][2].hit).toBe(true);
 });
 
 test(" returns true if all ships are sunk", () => {
