@@ -11,6 +11,7 @@ export default function renderCell(gameBoardArray, i, j, player, enemy) {
     if (gameBoardArray[i][j].getName) cell.textContent = gameBoardArray[i][j].getName();
   }
   cell.addEventListener("click", () => {
+    if (player.getGameboard().areAllSunk() || enemy.getGameboard().areAllSunk()) return;
     if (!player.getTurn()) {
       if (enemy.attack(player, ...cell.id.split(","))) {
         player.toggleTurn();
