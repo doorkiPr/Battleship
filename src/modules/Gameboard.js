@@ -36,7 +36,10 @@ export default function Gameboard(name) {
     if (gameBoardArray[y][x] === "missed") return false;
     receivedCoordinatesArray.push({ y, x });
     if (!gameBoardArray[y][x]) gameBoardArray[y].splice(x, 1, "missed");
-    if (gameBoardArray[y][x] !== "missed") gameBoardArray[y][x].hit();
+    if (gameBoardArray[y][x] !== "missed") {
+      gameBoardArray[y][x].hit();
+      gameBoardArray[y].splice(x, 1, { isHit: true, ship: gameBoardArray[y][x] });
+    }
     return true;
   }
 
