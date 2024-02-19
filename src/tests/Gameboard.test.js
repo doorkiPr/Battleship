@@ -240,7 +240,7 @@ test("correctly returns ships parts that are hit", () => {
   const myShip = Ship("Destroyer");
   testGameboard.placeShip(myShip, 1, 2);
   testGameboard.receiveAttack(1, 2);
-  expect(testGameboard.getGameboardArray()[1][2].hit).toBe(true);
+  expect(testGameboard.getGameboardArray()[1][2].isHit).toBe(true);
 });
 
 test(" returns true if all ships are sunk", () => {
