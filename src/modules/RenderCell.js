@@ -15,9 +15,9 @@ export default function renderCell(gameBoardArray, i, j, player, enemy) {
     if (player.getGameboard().areAllSunk() || enemy.getGameboard().areAllSunk()) return;
     if (!player.getTurn()) {
       if (enemy.attack(player, ...cell.id.split(","))) {
+        if (enemy.getTurn()) renderInformation("turn", player);
         if (player.getGameboard().areAllSunk()) renderInformation("win", player, enemy);
         if (enemy.getGameboard().areAllSunk()) renderInformation("win", enemy, player);
-        if (enemy.getTurn()) renderInformation("turn", player);
 
         player.toggleTurn();
         enemy.toggleTurn();
