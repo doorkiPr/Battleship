@@ -13,7 +13,7 @@ export default function renderCell(gameBoardArray, i, j, player, enemy) {
   }
   cell.addEventListener("click", () => {
     if (player.getGameboard().areAllSunk() || enemy.getGameboard().areAllSunk()) return;
-    if (!player.getTurn()) {
+    if (enemy.getTurn()) {
       if (enemy.attack(player, ...cell.id.split(","))) {
         if (enemy.getTurn()) renderInformation("turn", player);
         if (player.getGameboard().areAllSunk()) renderInformation("win", player, enemy);
