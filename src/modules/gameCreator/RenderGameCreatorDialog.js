@@ -1,3 +1,4 @@
+import RenderCreatorGameboard from "./RenderCreatorGameboard";
 import renderShipTable from "./RenderShipTable";
 
 export default function RenderGameCreatorDialog(Player, Gameboard) {
@@ -19,5 +20,6 @@ export default function RenderGameCreatorDialog(Player, Gameboard) {
     const newPlayer = Player(name, Gameboard);
     dialog.innerHTML = "";
     renderShipTable(shipsArray, selectedShip, dialog);
+    RenderCreatorGameboard(newPlayer, shipsArray, selectedShip, dialog);
   });
 }
