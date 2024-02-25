@@ -1,3 +1,5 @@
+import renderShipTable from "./RenderShipTable";
+
 export default function RenderGameCreatorDialog(Player, Gameboard) {
   const shipsArray = [
     { name: "Carrier", quantity: 1 },
@@ -16,5 +18,6 @@ export default function RenderGameCreatorDialog(Player, Gameboard) {
     const name = document.getElementById("playerName").value;
     const newPlayer = Player(name, Gameboard);
     dialog.innerHTML = "";
+    renderShipTable(shipsArray, selectedShip, dialog);
   });
 }
