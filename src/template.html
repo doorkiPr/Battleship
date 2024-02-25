@@ -7,6 +7,22 @@
   </head>
   <body>
     <header>Battleship</header>
+    <dialog id="gameCreatorDialog">
+      <form id="gameCreatorForm">
+        <input
+          alt="Confirm player name input"
+          ype="text"
+          class="playerName"
+          required
+          minlength="1"
+          maxlength="10"
+          placeholder="input name"
+          name="playerName"
+          id="playerName"
+        />
+        <button class="confirm" id="confirmName">Proceed</button>
+      </form>
+    </dialog>
     <main>
       <div class="gameboardWrapper">
         <div class="gameboadContainer">
