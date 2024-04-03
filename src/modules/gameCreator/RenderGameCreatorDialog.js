@@ -9,7 +9,8 @@ export default function RenderGameCreatorDialog(Player, Gameboard) {
     { name: "Submarine", quantity: 2 },
     { name: "Destroyer", quantity: 3 },
   ];
-  let selectedShip;
+  // eslint-disable-next-line prefer-const
+  let selectedShip = null;
 
   const dialog = document.querySelector("#gameCreatorDialog");
   dialog.showModal();
