@@ -9,7 +9,8 @@ export default function renderShipTable(shipsArray, selectedShip, dialog) {
     newShip.textContent = ship.name;
     quantity.textContent = ship.quantity;
     newShip.addEventListener("click", () => {
-      selectedShip = ship.name;
+      if (ship.quantity) selectedShip = ship.name;
+      else selectedShip = null;
     });
     shipTable.appendChild(newShip);
     shipTable.appendChild(quantity);
