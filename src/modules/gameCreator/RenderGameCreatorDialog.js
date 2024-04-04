@@ -11,7 +11,12 @@ export default function RenderGameCreatorDialog(Player, Gameboard) {
   ];
   // eslint-disable-next-line prefer-const
   let selectedShip = null;
-
+  function updateSelectedShip(newValue) {
+    selectedShip = newValue;
+  }
+  function getSelectedShip() {
+    return selectedShip;
+  }
   const dialog = document.querySelector("#gameCreatorDialog");
   dialog.showModal();
   const form = document.querySelector("#gameCreatorForm");
@@ -20,7 +25,7 @@ export default function RenderGameCreatorDialog(Player, Gameboard) {
     const name = document.getElementById("playerName").value;
     const newPlayer = Player(name, Gameboard);
     dialog.innerHTML = "";
-    renderShipTable(shipsArray, selectedShip, dialog);
-    RenderCreatorGameboard(newPlayer, shipsArray, selectedShip, dialog);
+    renderShipTable(shipsArray, updateSelectedShip, dialog);
+    RenderCreatorGameboard(newPlayer, shipsArray, getSelectedShip, dialog);
   });
 }
