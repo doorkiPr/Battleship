@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 // eslint-disable-next-line no-unused-vars
 import gameboardStyle from "../../styles/gameboard.css";
 import createHtmlElement from "../../helperFunction/CreateHtmlElement";
@@ -12,9 +13,12 @@ export default function RenderCreatorGameboard(player, shipsArray, getSelectedSh
       const cell = createHtmlElement("div", { id: `${i},${j}`, class: "cell" });
       if (gameBoardArray[i][j]) cell.textContent = gameBoardArray[i][j].getName();
       cell.addEventListener("click", () => {
-        player.getGameboard().placeShip(Ship(getSelectedShip()), i, j);
-        gameboardContainer.remove();
-        RenderCreatorGameboard(player, shipsArray, getSelectedShip, dialog);
+        if (player.getGameboard().placeShip(Ship(getSelectedShip()), i, j)) {
+          const foundIndex = shipsArray.findIndex((ship) => ship.name === getSelectedShip());
+          shipsArray[foundIndex].quantity -= 1;
+          gameboardContainer.remove();
+          RenderCreatorGameboard(player, shipsArray, getSelectedShip, dialog);
+        }
       });
       gameboardContainer.appendChild(cell);
     }
