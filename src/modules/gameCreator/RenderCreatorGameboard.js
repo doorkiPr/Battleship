@@ -12,7 +12,15 @@ export default function RenderCreatorGameboard(
   dialog,
   updateSelectedShip
 ) {
+  const gameboardWrapper = createHtmlElement("div", { id: "creationGameboardWrapper" });
   const gameboardContainer = createHtmlElement("div", { id: `creationGameboard`, class: "gameBoard" });
+  const buttonWrapper = createHtmlElement("div", { id: "creationButtonWrapper" });
+  const toggleAxis = createHtmlElement("button", { id: "toggleAxisBtn", class: "button" });
+  const startGameBtn = createHtmlElement("button", { id: "startGameBtn", class: "button" });
+
+  toggleAxis.textContent = "Change Axis";
+  startGameBtn.textContent = "Start Game";
+
   const gameBoardArray = player.getGameboard().getGameboardArray();
   renderShipTable(shipsArray, updateSelectedShip, dialog);
 
@@ -31,7 +39,7 @@ export default function RenderCreatorGameboard(
           player.getGameboard().placeShip(Ship(getSelectedShip()), i, j)
         ) {
           shipsArray[foundIndex].quantity -= 1;
-          gameboardContainer.remove();
+          gameboardWrapper.remove();
           document.querySelector("#shipTable").remove();
           RenderCreatorGameboard(player, shipsArray, getSelectedShip, dialog, updateSelectedShip);
         }
@@ -40,5 +48,9 @@ export default function RenderCreatorGameboard(
       gameboardContainer.appendChild(cell);
     }
   }
-  dialog.appendChild(gameboardContainer);
+  buttonWrapper.appendChild(toggleAxis);
+  buttonWrapper.appendChild(startGameBtn);
+  gameboardWrapper.appendChild(gameboardContainer);
+  gameboardWrapper.appendChild(buttonWrapper);
+  dialog.appendChild(gameboardWrapper);
 }
