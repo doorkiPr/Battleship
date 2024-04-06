@@ -13,8 +13,11 @@ export default function RenderCreatorGameboard(player, shipsArray, getSelectedSh
       const cell = createHtmlElement("div", { id: `${i},${j}`, class: "cell" });
       if (gameBoardArray[i][j]) cell.textContent = gameBoardArray[i][j].getName();
       cell.addEventListener("click", () => {
-        if (player.getGameboard().placeShip(Ship(getSelectedShip()), i, j)) {
-          const foundIndex = shipsArray.findIndex((ship) => ship.name === getSelectedShip());
+        const foundIndex = shipsArray.findIndex((ship) => ship.name === getSelectedShip());
+        if (
+          shipsArray[foundIndex].quantity && // first check if the quantity is above zero then place the ship
+          player.getGameboard().placeShip(Ship(getSelectedShip()), i, j)
+        ) {
           shipsArray[foundIndex].quantity -= 1;
           gameboardContainer.remove();
           RenderCreatorGameboard(player, shipsArray, getSelectedShip, dialog);
