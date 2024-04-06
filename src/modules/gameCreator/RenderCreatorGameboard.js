@@ -26,7 +26,8 @@ export default function RenderCreatorGameboard(
         const foundIndex = shipsArray.findIndex((ship) => ship.name === getSelectedShip());
 
         if (
-          shipsArray[foundIndex].quantity && // first check if the quantity is above zero then place the ship
+          getSelectedShip() && // first check is selected ship is not null
+          shipsArray[foundIndex].quantity && // then check if the quantity is above zero then place the ship
           player.getGameboard().placeShip(Ship(getSelectedShip()), i, j)
         ) {
           shipsArray[foundIndex].quantity -= 1;
