@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 /* eslint-disable no-param-reassign */
 // eslint-disable-next-line no-unused-vars
 import gameboardStyle from "../../styles/gameboard.css";
@@ -18,8 +19,15 @@ export default function RenderCreatorGameboard(
   const toggleAxis = createHtmlElement("button", { id: "toggleAxisBtn", class: "button" });
   const startGameBtn = createHtmlElement("button", { id: "startGameBtn", class: "button" });
 
-  toggleAxis.textContent = "Change Axis";
+  toggleAxis.textContent = "horizontal axis";
   startGameBtn.textContent = "Start Game";
+
+  let axis = "horizontal";
+
+  toggleAxis.addEventListener("click", () => {
+    axis = axis === "horizontal" ? "vertical" : "horizontal";
+    toggleAxis.textContent = `${axis} axis`;
+  });
 
   const gameBoardArray = player.getGameboard().getGameboardArray();
   renderShipTable(shipsArray, updateSelectedShip, dialog);
@@ -36,7 +44,7 @@ export default function RenderCreatorGameboard(
         if (
           getSelectedShip() && // first check is selected ship is not null
           shipsArray[foundIndex].quantity && // then check if the quantity is above zero then place the ship
-          player.getGameboard().placeShip(Ship(getSelectedShip()), i, j)
+          player.getGameboard().placeShip(Ship(getSelectedShip()), i, j, axis)
         ) {
           shipsArray[foundIndex].quantity -= 1;
           gameboardWrapper.remove();
