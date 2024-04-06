@@ -3,10 +3,18 @@
 import gameboardStyle from "../../styles/gameboard.css";
 import createHtmlElement from "../../helperFunction/CreateHtmlElement";
 import Ship from "../Ship";
+import renderShipTable from "./RenderShipTable";
 
-export default function RenderCreatorGameboard(player, shipsArray, getSelectedShip, dialog) {
+export default function RenderCreatorGameboard(
+  player,
+  shipsArray,
+  getSelectedShip,
+  dialog,
+  updateSelectedShip
+) {
   const gameboardContainer = createHtmlElement("div", { id: `creationGameboard`, class: "gameBoard" });
   const gameBoardArray = player.getGameboard().getGameboardArray();
+  renderShipTable(shipsArray, updateSelectedShip, dialog);
 
   for (let i = 0; i < gameBoardArray.length; i += 1) {
     for (let j = 0; j < gameBoardArray.length; j += 1) {
@@ -23,7 +31,8 @@ export default function RenderCreatorGameboard(player, shipsArray, getSelectedSh
         ) {
           shipsArray[foundIndex].quantity -= 1;
           gameboardContainer.remove();
-          RenderCreatorGameboard(player, shipsArray, getSelectedShip, dialog);
+          document.querySelector("#shipTable").remove();
+          RenderCreatorGameboard(player, shipsArray, getSelectedShip, dialog, updateSelectedShip);
         }
       });
 
