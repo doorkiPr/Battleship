@@ -5,9 +5,11 @@ import gameboardStyle from "../../styles/gameboard.css";
 import createHtmlElement from "../../helperFunction/CreateHtmlElement";
 import Ship from "../Ship";
 import renderShipTable from "./RenderShipTable";
+import renderGameboard from "../RenderGameboard";
 
 export default function RenderCreatorGameboard(
   player,
+  computer,
   shipsArray,
   getSelectedShip,
   dialog,
@@ -29,6 +31,11 @@ export default function RenderCreatorGameboard(
     toggleAxis.textContent = `${axis} axis`;
   });
 
+  startGameBtn.addEventListener("click", () => {
+    renderGameboard(player, "human", computer);
+    renderGameboard(computer, "computer", player);
+    dialog.close();
+  });
   const gameBoardArray = player.getGameboard().getGameboardArray();
   renderShipTable(shipsArray, updateSelectedShip, dialog);
 
@@ -49,7 +56,7 @@ export default function RenderCreatorGameboard(
           shipsArray[foundIndex].quantity -= 1;
           gameboardWrapper.remove();
           document.querySelector("#shipTable").remove();
-          RenderCreatorGameboard(player, shipsArray, getSelectedShip, dialog, updateSelectedShip);
+          RenderCreatorGameboard(player, computer, shipsArray, getSelectedShip, dialog, updateSelectedShip);
         }
       });
 
