@@ -1,3 +1,4 @@
+import getComputerPlayer from "../ComputerPlayer";
 import RenderCreatorGameboard from "./RenderCreatorGameboard";
 
 export default function RenderGameCreatorDialog(Player, Gameboard) {
@@ -23,7 +24,8 @@ export default function RenderGameCreatorDialog(Player, Gameboard) {
   form.addEventListener("submit", () => {
     const name = document.getElementById("playerName").value;
     const newPlayer = Player(name, Gameboard);
+    const computer = getComputerPlayer(shipsArray);
     dialog.innerHTML = "";
-    RenderCreatorGameboard(newPlayer, shipsArray, getSelectedShip, dialog, updateSelectedShip);
+    RenderCreatorGameboard(newPlayer, computer, shipsArray, getSelectedShip, dialog, updateSelectedShip);
   });
 }
