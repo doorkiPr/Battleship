@@ -6,6 +6,14 @@ test("player returns correct name ", () => {
   const player1 = Player("playerOne", Gameboard);
   expect(player1.getName()).toBe("playerOne");
 });
+test("player returns correct nature ", () => {
+  const player1 = Player("playerOne", Gameboard);
+  expect(player1.getNature()).toBe("human");
+});
+test("player returns correct name ", () => {
+  const player1 = Player("playerOne", Gameboard, false, "computer");
+  expect(player1.getNature()).toBe("computer");
+});
 
 test("valid attack returns true ", () => {
   const player1 = Player("playerOne", Gameboard);
