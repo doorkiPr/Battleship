@@ -1,7 +1,7 @@
 import createHtmlElement from "../helperFunction/CreateHtmlElement";
 import renderInformation from "./RenderInformation";
 
-export default function renderCell(gameBoardArray, i, j, player, enemy) {
+export default function renderCell(gameBoardArray, i, j, player, enemy, playerNature, renderGameboard) {
   const cell = createHtmlElement("div", { id: `${i},${j}`, class: "cell" });
   if (gameBoardArray[i][j]) {
     if (gameBoardArray[i][j] === "missed") cell.textContent = "X";
@@ -22,6 +22,7 @@ export default function renderCell(gameBoardArray, i, j, player, enemy) {
         player.toggleTurn();
         enemy.toggleTurn();
       }
+      renderGameboard(player, playerNature, enemy);
     }
   });
   return cell;
