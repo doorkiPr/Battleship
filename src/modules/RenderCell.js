@@ -10,7 +10,8 @@ export default function renderCell(gameBoardArray, i, j, player, enemy, renderGa
       if (gameBoardArray[i][j].ship.isSunk()) cell.textContent = "sunk";
       else cell.textContent = "hit";
     }
-    if (gameBoardArray[i][j].getName) cell.textContent = gameBoardArray[i][j].getName();
+    if (gameBoardArray[i][j].getName && player.getNature() === "human")
+      cell.textContent = gameBoardArray[i][j].getName();
   }
   cell.addEventListener("click", () => {
     if (player.getGameboard().areAllSunk() || enemy.getGameboard().areAllSunk()) return;
