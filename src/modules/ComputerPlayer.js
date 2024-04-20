@@ -3,7 +3,7 @@ import Player from "./Player";
 import Ship from "./Ship";
 
 export default function getComputerPlayer(shipsArray) {
-  const computerPlayer = Player("computer", Gameboard, false);
+  const computerPlayer = Player("computer", Gameboard, false, "computer");
 
   function getRandomNumber() {
     return Math.floor(Math.random() * 10);
