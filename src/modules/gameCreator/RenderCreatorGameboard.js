@@ -32,8 +32,8 @@ export default function RenderCreatorGameboard(
   });
 
   startGameBtn.addEventListener("click", () => {
-    renderGameboard(player, "human", computer);
-    renderGameboard(computer, "computer", player);
+    renderGameboard(player, computer);
+    renderGameboard(computer, player);
     dialog.close();
   });
   const gameBoardArray = player.getGameboard().getGameboardArray();
