@@ -1,4 +1,5 @@
 import createHtmlElement from "../helperFunction/CreateHtmlElement";
+import computerAI from "./ComputerAI";
 import renderInformation from "./RenderInformation";
 
 export default function renderCell(gameBoardArray, i, j, player, enemy, playerNature, renderGameboard) {
@@ -19,8 +20,13 @@ export default function renderCell(gameBoardArray, i, j, player, enemy, playerNa
         if (player.getGameboard().areAllSunk()) renderInformation("win", player, enemy);
         if (enemy.getGameboard().areAllSunk()) renderInformation("win", enemy, player);
 
-        player.toggleTurn();
-        enemy.toggleTurn();
+        if (player.getNature() === "computer") {
+          computerAI().computerAttack(player, enemy);
+          renderGameboard(enemy, "human", player);
+        } else {
+          player.toggleTurn();
+          enemy.toggleTurn();
+        }
       }
       renderGameboard(player, playerNature, enemy);
     }
