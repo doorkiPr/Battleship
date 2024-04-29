@@ -8,8 +8,8 @@ import renderShipTable from "./RenderShipTable";
 import renderGameboard from "../RenderGameboard";
 
 export default function RenderCreatorGameboard(
-  player,
-  computer,
+  playerOne,
+  playerTwo,
   shipsArray,
   getSelectedShip,
   dialog,
@@ -32,11 +32,11 @@ export default function RenderCreatorGameboard(
   });
 
   startGameBtn.addEventListener("click", () => {
-    renderGameboard(player, computer);
-    renderGameboard(computer, player);
+    renderGameboard(playerOne, playerTwo);
+    renderGameboard(playerTwo, playerOne);
     dialog.close();
   });
-  const gameBoardArray = player.getGameboard().getGameboardArray();
+  const gameBoardArray = playerOne.getGameboard().getGameboardArray();
   renderShipTable(shipsArray, updateSelectedShip, dialog);
 
   for (let i = 0; i < gameBoardArray.length; i += 1) {
@@ -51,12 +51,19 @@ export default function RenderCreatorGameboard(
         if (
           getSelectedShip() && // first check is selected ship is not null
           shipsArray[foundIndex].quantity && // then check if the quantity is above zero then place the ship
-          player.getGameboard().placeShip(Ship(getSelectedShip()), i, j, axis)
+          playerOne.getGameboard().placeShip(Ship(getSelectedShip()), i, j, axis)
         ) {
           shipsArray[foundIndex].quantity -= 1;
           gameboardWrapper.remove();
           document.querySelector("#shipTable").remove();
-          RenderCreatorGameboard(player, computer, shipsArray, getSelectedShip, dialog, updateSelectedShip);
+          RenderCreatorGameboard(
+            playerOne,
+            playerTwo,
+            shipsArray,
+            getSelectedShip,
+            dialog,
+            updateSelectedShip
+          );
         }
       });
 
