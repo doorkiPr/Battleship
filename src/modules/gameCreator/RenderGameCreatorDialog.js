@@ -1,5 +1,7 @@
 import getComputerPlayer from "../ComputerPlayer";
 import RenderCreatorGameboard from "./RenderCreatorGameboard";
+// eslint-disable-next-line no-unused-vars
+import gameCreatorStyle from "../../styles/gameCreatorDialog.css";
 
 export default function RenderGameCreatorDialog(Player, Gameboard, isVersusAi) {
   const shipsArray = [

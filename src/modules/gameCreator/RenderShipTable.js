@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import createHtmlElement from "../../helperFunction/CreateHtmlElement";
 
-export default function renderShipTable(shipsArray, updateSelectedShip, dialog) {
+export default function renderShipTable(shipsArray, updateSelectedShip, wrapper) {
   const shipTable = createHtmlElement("div", { id: "shipTable" });
   shipsArray.forEach((ship) => {
     const shipWrapper = createHtmlElement("div", { id: `${ship.name}wrapper`, class: "shipWrapper" });
@@ -16,5 +16,5 @@ export default function renderShipTable(shipsArray, updateSelectedShip, dialog) 
     shipWrapper.appendChild(quantity);
     shipTable.appendChild(shipWrapper);
   });
-  dialog.appendChild(shipTable);
+  wrapper.appendChild(shipTable);
 }

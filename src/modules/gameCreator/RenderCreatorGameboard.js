@@ -15,6 +15,7 @@ export default function RenderCreatorGameboard(
   dialog,
   updateSelectedShip
 ) {
+  const wrapper = createHtmlElement("div", { id: "gameCreatorWrapper" });
   const gameboardWrapper = createHtmlElement("div", { id: "creationGameboardWrapper" });
   const gameboardContainer = createHtmlElement("div", { id: `creationGameboard`, class: "gameBoard" });
   const buttonWrapper = createHtmlElement("div", { id: "creationButtonWrapper" });
@@ -37,7 +38,7 @@ export default function RenderCreatorGameboard(
     dialog.close();
   });
   const gameBoardArray = playerOne.getGameboard().getGameboardArray();
-  renderShipTable(shipsArray, updateSelectedShip, dialog);
+  renderShipTable(shipsArray, updateSelectedShip, wrapper);
 
   for (let i = 0; i < gameBoardArray.length; i += 1) {
     for (let j = 0; j < gameBoardArray.length; j += 1) {
@@ -74,5 +75,6 @@ export default function RenderCreatorGameboard(
   buttonWrapper.appendChild(startGameBtn);
   gameboardWrapper.appendChild(gameboardContainer);
   gameboardWrapper.appendChild(buttonWrapper);
-  dialog.appendChild(gameboardWrapper);
+  wrapper.appendChild(gameboardWrapper);
+  dialog.appendChild(wrapper);
 }
