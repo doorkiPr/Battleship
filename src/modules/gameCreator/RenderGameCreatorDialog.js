@@ -1,7 +1,7 @@
 import getComputerPlayer from "../ComputerPlayer";
 import RenderCreatorGameboard from "./RenderCreatorGameboard";
 
-export default function RenderGameCreatorDialog(Player, Gameboard) {
+export default function RenderGameCreatorDialog(Player, Gameboard, isVersusAi) {
   const shipsArray = [
     { name: "Carrier", quantity: 1 },
     { name: "Battleship", quantity: 1 },
@@ -24,8 +24,10 @@ export default function RenderGameCreatorDialog(Player, Gameboard) {
   form.addEventListener("submit", () => {
     const name = document.getElementById("playerName").value;
     const newPlayer = Player(name, Gameboard);
-    const computer = getComputerPlayer(shipsArray);
-    dialog.innerHTML = "";
-    RenderCreatorGameboard(newPlayer, computer, shipsArray, getSelectedShip, dialog, updateSelectedShip);
+    if (isVersusAi) {
+      const computer = getComputerPlayer(shipsArray);
+      dialog.innerHTML = "";
+      RenderCreatorGameboard(newPlayer, computer, shipsArray, getSelectedShip, dialog, updateSelectedShip);
+    }
   });
 }
