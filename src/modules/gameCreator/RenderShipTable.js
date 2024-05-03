@@ -4,6 +4,7 @@ import createHtmlElement from "../../helperFunction/CreateHtmlElement";
 export default function renderShipTable(shipsArray, updateSelectedShip, dialog) {
   const shipTable = createHtmlElement("div", { id: "shipTable" });
   shipsArray.forEach((ship) => {
+    const shipWrapper = createHtmlElement("div", { id: `${ship.name}wrapper`, class: "shipWrapper" });
     const newShip = createHtmlElement("div", { id: ship.name, class: "ship" });
     const quantity = createHtmlElement("div", { id: ship.name, class: "shipQuantity" });
     newShip.textContent = ship.name;
@@ -11,8 +12,9 @@ export default function renderShipTable(shipsArray, updateSelectedShip, dialog) 
     newShip.addEventListener("click", () => {
       if (ship.quantity) updateSelectedShip(ship.name);
     });
-    shipTable.appendChild(newShip);
-    shipTable.appendChild(quantity);
+    shipWrapper.appendChild(newShip);
+    shipWrapper.appendChild(quantity);
+    shipTable.appendChild(shipWrapper);
   });
   dialog.appendChild(shipTable);
 }
