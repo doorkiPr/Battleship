@@ -9,23 +9,27 @@
     <header>Battleship</header>
     <dialog id="gamemodeDialog">
       <div>Choose Preferred Gamemode</div>
-      <button id="aiButton" class="gamemodeButton">AI</button>
-      <button id="humanButton" class="gamemodeButton">PVP</button>
+      <wrapper id="optionBtnWrapper">
+        <button id="aiButton" class="gamemodeButton">AI</button>
+        <button id="humanButton" class="gamemodeButton">PVP</button>
+      </wrapper>
     </dialog>
     <dialog id="gameCreatorDialog">
       <form id="gameCreatorForm">
-        <input
-          alt="Confirm player name input"
-          ype="text"
-          class="playerName"
-          required
-          minlength="1"
-          maxlength="10"
-          placeholder="input name"
-          name="playerName"
-          id="playerName"
-        />
-        <button class="confirm" id="confirmName">Proceed</button>
+        <wrapper id="creatorBtnWrapper">
+          <input
+            alt="Confirm player name input"
+            ype="text"
+            class="playerName"
+            required
+            minlength="1"
+            maxlength="10"
+            placeholder="input name"
+            name="playerName"
+            id="playerName"
+          />
+          <button class="confirm" id="confirmName">Proceed</button>
+        </wrapper>
       </form>
     </dialog>
     <main>
