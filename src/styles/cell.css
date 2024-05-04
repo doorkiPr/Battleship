@@ -1,6 +1,9 @@
 .ship {
   border-radius: 10px;
   border: none;
+  color: white;
+  background-color: var(--contrast);
+  text-align: center;
 }
 .carrier {
   background-color: var(--red);
