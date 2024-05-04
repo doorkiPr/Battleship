@@ -1,0 +1,19 @@
+.ship {
+  border-radius: 10px;
+  border: none;
+}
+.carrier {
+  background-color: var(--red);
+}
+.battleship {
+  background-color: var(--green);
+}
+.submarine {
+  background-color: var(--blue);
+}
+.cruiser {
+  background-color: var(--purple);
+}
+.destroyer {
+  background-color: var(--mauve);
+}
