@@ -34,8 +34,15 @@ export default function renderCell(gameBoardArray, i, j, player, enemy, renderGa
         if (enemy.getGameboard().areAllSunk()) renderInformation("win", enemy, player);
 
         if (player.getNature() === "computer") {
-          computerAI().computerAttack(player, enemy);
-          renderGameboard(enemy, player);
+          // if it is the computer's gameboard
+          enemy.toggleTurn(); // set off the turn of the enemy (human player)
+
+          setTimeout(() => {
+            computerAI().computerAttack(player, enemy);
+            renderGameboard(enemy, player);
+            renderInformation("turn", enemy, player);
+            enemy.toggleTurn(); // set it back on after the computer finished it's play
+          }, 10);
         } else {
           player.toggleTurn();
           enemy.toggleTurn();
