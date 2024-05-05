@@ -3,19 +3,20 @@ import computerAI from "./ComputerAI";
 import renderInformation from "./RenderInformation";
 // eslint-disable-next-line no-unused-vars
 import style from "../styles/cell.css";
+import GenerateIcon from "../helperFunction/generateIcon";
 
 export default function renderCell(gameBoardArray, i, j, player, enemy, renderGameboard) {
   const cell = createHtmlElement("div", { id: `${i},${j}`, class: "cell" });
   if (gameBoardArray[i][j]) {
-    if (gameBoardArray[i][j] === "missed") cell.textContent = "X";
+    if (gameBoardArray[i][j] === "missed") cell.appendChild(GenerateIcon().missed);
 
     if (gameBoardArray[i][j].isHit) {
       cell.classList.add("ship");
 
       if (gameBoardArray[i][j].ship.isSunk()) {
-        cell.textContent = "sunk";
+        cell.appendChild(GenerateIcon().destroyed);
         cell.classList.add(gameBoardArray[i][j].ship.getName().toLowerCase());
-      } else cell.textContent = "hit";
+      } else cell.appendChild(GenerateIcon().fire);
     }
 
     if (gameBoardArray[i][j].getName && player.getNature() === "human")
