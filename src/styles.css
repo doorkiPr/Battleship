@@ -7,16 +7,34 @@
   --mauve: #8e24aa;
   --gameboardBackground: #9ddddc;
   --gray: #f8f9fa;
+  --darkgray: #c7c9cc;
   --primary: #18bc9c;
   --contrast: #2c3e50;
 }
+
 body {
+  height: 100dvh;
   margin: 0;
   padding: 0;
   font-family: "roboto";
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 }
 header {
-  height: 10dvh;
+  height: 10%;
+  padding: 15px;
+  background-color: var(--contrast);
+  color: var(--gameboardBackground);
+  font-weight: 500;
+  font-size: 3rem;
+}
+footer {
+  height: 5%;
+  background-color: wheat;
+}
+main {
+  height: 85%;
 }
 .gameboardWrapper {
   width: 100%;
