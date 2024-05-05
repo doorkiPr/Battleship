@@ -13,9 +13,6 @@
 .ship {
   cursor: pointer;
 }
-.ship:hover {
-  color: rebeccapurple;
-}
 #shipTable {
   justify-self: center;
   width: 70%;

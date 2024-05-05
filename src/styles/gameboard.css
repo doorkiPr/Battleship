@@ -9,13 +9,21 @@
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
+  gap: 5px;
+  box-shadow:
+    rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  background-color: var(--gameboardBackground);
 }
 .cell {
-  border: black 1px solid;
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.15);
+  text-align: center;
+  font-weight: 600;
 }
 .cell:hover {
-  background-color: blueviolet;
   cursor: crosshair;
+  scale: 1.1;
 }
 @media only screen and (max-width: 600px) {
   .gameBoard {
