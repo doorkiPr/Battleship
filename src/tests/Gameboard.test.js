@@ -162,6 +162,15 @@ test("ignore second ship  if it's gonna span into first ship on Vertical Axis", 
   testGameboard.placeShip(anotherShip, 1, 7, "vertical");
   expect(testGameboard.getGameboardArray()[2][7]).toBe(null);
 });
+test("ignore second ship  if it's gonna span into first ship", () => {
+  const testGameboard = Gameboard("testing");
+  const myShip = Ship("Submarine");
+  const anotherShip = Ship("Destroyer");
+
+  testGameboard.placeShip(myShip, 3, 3);
+  testGameboard.placeShip(anotherShip, 3, 2);
+  expect(testGameboard.getGameboardArray()[3][5]).toBe(null);
+});
 
 test("ignores second ship if it's placed on the same coordinates as the first one", () => {
   const testGameboard = Gameboard("testing");
