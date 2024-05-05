@@ -25,16 +25,21 @@ header {
   height: 10%;
   padding: 15px;
   background-color: var(--contrast);
-  color: var(--gameboardBackground);
+  color: white;
   font-weight: 500;
   font-size: 3rem;
 }
 footer {
   height: 5%;
   background-color: wheat;
+  color: var(--contrast);
+  text-align: center;
 }
 main {
   height: 85%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 .gameboardWrapper {
   width: 100%;
