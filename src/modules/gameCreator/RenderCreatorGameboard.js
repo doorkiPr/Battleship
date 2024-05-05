@@ -44,7 +44,7 @@ export default function RenderCreatorGameboard(
     for (let j = 0; j < gameBoardArray.length; j += 1) {
       const cell = createHtmlElement("div", { id: `${i},${j}`, class: "cell" });
 
-      if (gameBoardArray[i][j]) cell.textContent = gameBoardArray[i][j].getName();
+      if (gameBoardArray[i][j]) cell.classList.add(gameBoardArray[i][j].getName().toLowerCase(), "ship");
 
       cell.addEventListener("click", () => {
         const foundIndex = shipsArray.findIndex((ship) => ship.name === getSelectedShip());
