@@ -42,6 +42,9 @@ export default function renderCell(gameBoardArray, i, j, player, enemy, renderGa
             renderGameboard(enemy, player);
             renderInformation("turn", enemy, player);
             enemy.toggleTurn(); // set it back on after the computer finished it's play
+
+            if (player.getGameboard().areAllSunk()) renderInformation("win", player, enemy);
+            if (enemy.getGameboard().areAllSunk()) renderInformation("win", enemy, player);
           }, 10);
         } else {
           player.toggleTurn();
