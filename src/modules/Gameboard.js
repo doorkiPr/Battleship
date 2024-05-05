@@ -28,7 +28,7 @@ export default function Gameboard(name) {
     }
 
     for (let i = 0; i < ship.getLength(); i += 1) {
-      if (gameBoardArray[y + i] === undefined || gameBoardArray[y][x + i] !== null) {
+      if (gameBoardArray[x + i] === undefined || gameBoardArray[y][x + i] !== null) {
         return false; // if any cell is already occupied by another ship or if ship is placed out of bounds, return false
       }
     }
