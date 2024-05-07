@@ -7,24 +7,13 @@ import GenerateIcon from "../helperFunction/generateIcon";
 
 export default function renderCell(gameBoardArray, i, j, player, enemy, renderGameboard) {
   const cell = createHtmlElement("div", { id: `${i},${j}`, class: "cell" });
-  if (gameBoardArray[i][j]) {
-    if (gameBoardArray[i][j] === "missed") cell.appendChild(GenerateIcon().missed);
 
-    if (gameBoardArray[i][j].isHit) {
-      cell.classList.add("ship");
-
-      if (gameBoardArray[i][j].ship.isSunk()) {
-        cell.appendChild(GenerateIcon().destroyed);
-        cell.classList.add(gameBoardArray[i][j].ship.getName().toLowerCase());
-      } else cell.appendChild(GenerateIcon().fire);
-    }
-
-    if (gameBoardArray[i][j].getName && player.getNature() === "human")
-      cell.classList.add(gameBoardArray[i][j].getName().toLowerCase(), "ship");
+  function isGameFinished() {
+    return player.getGameboard().areAllSunk() || enemy.getGameboard().areAllSunk();
   }
 
   cell.addEventListener("click", () => {
-    if (player.getGameboard().areAllSunk() || enemy.getGameboard().areAllSunk()) return;
+    if (isGameFinished()) return;
 
     if (enemy.getTurn()) {
       if (enemy.attack(player, ...cell.id.split(","))) {
@@ -54,5 +43,31 @@ export default function renderCell(gameBoardArray, i, j, player, enemy, renderGa
       renderGameboard(player, enemy);
     }
   });
+
+  const gameboardCell = gameBoardArray[i][j];
+
+  if (gameboardCell) {
+    if (gameboardCell.isHit) {
+      cell.classList.add("ship");
+
+      if (gameboardCell.ship.isSunk()) {
+        cell.appendChild(GenerateIcon().destroyed);
+
+        cell.classList.add(gameboardCell.ship.getName().toLowerCase());
+      } else cell.appendChild(GenerateIcon().fire);
+
+      return cell;
+    }
+
+    if (gameboardCell === "missed") {
+      cell.appendChild(GenerateIcon().missed);
+      return cell;
+    }
+
+    if (player.getNature() === "human") {
+      cell.classList.add(gameboardCell.getName().toLowerCase(), "ship");
+      return cell;
+    }
+  }
   return cell;
 }
