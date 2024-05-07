@@ -47,19 +47,21 @@ export default function Gameboard(name) {
     if (y < 0 || y > 10 || x < 0 || x > 10) return false;
 
     const cell = gameBoard[y][x];
+
     if (receivedCoordinates.some((coordinates) => coordinates.y === y && coordinates.x === x)) return false; // check if coordinates exist in array
+
     if (cell === "missed") return false;
 
     receivedCoordinates.push({ y, x });
 
-    if (!cell) {
+    if (cell === null) {
       gameBoard[y].splice(x, 1, "missed");
       return true;
     }
-    if (cell !== "missed") {
-      cell.hit();
-      gameBoard[y].splice(x, 1, { isHit: true, ship: cell });
-    }
+
+    cell.hit();
+    gameBoard[y].splice(x, 1, { isHit: true, ship: cell });
+
     return true;
   }
 
