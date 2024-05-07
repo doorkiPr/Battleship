@@ -1,40 +1,43 @@
 /* eslint-disable no-param-reassign */
 export default function Gameboard(name) {
-  const gameBoardArray = [];
-  const receivedCoordinatesArray = [];
+  const gameBoard = [];
+  const receivedCoordinates = [];
   const placedShips = [];
   for (let y = 0; y < 10; y += 1) {
-    gameBoardArray.push(new Array(10).fill(null));
+    gameBoard.push(new Array(10).fill(null));
   }
   const getName = () => name.toString();
-  const getGameboardArray = () => gameBoardArray;
+  const getGameboardArray = () => gameBoard;
 
   function placeShip(ship, y, x, axis = "horizontal") {
     if (y < 0 || y > 10 || x < 0 || x > 10) return false;
 
-    if (gameBoardArray[y][x]) return false;
-
     if (axis === "vertical") {
+      const isOutOfBoundVertical = y + ship.getLength() > gameBoard.length;
+      if (isOutOfBoundVertical) return false;
+
       for (let i = 0; i < ship.getLength(); i += 1) {
-        if (gameBoardArray[y + i] === undefined || gameBoardArray[y + i][x] !== null) {
-          return false; //  if any cell is already occupied by another ship or if ship is placed out of bounds, return false
-        }
+        const isCellOccupied = gameBoard[y + i][x] !== null;
+        if (isCellOccupied) return false;
       }
+
       for (let i = 0; i < ship.getLength(); i += 1) {
-        gameBoardArray[y + i].splice(x, 1, ship); // itterate through each row , replace element with an index of X by ship object
+        gameBoard[y + i].splice(x, 1, ship);
         placedShips.push(ship);
       }
       return true;
     }
 
+    const isOutOfBoundHorizontal = x + ship.getLength() > gameBoard[y].length;
+    if (isOutOfBoundHorizontal) return false;
+
     for (let i = 0; i < ship.getLength(); i += 1) {
-      if (gameBoardArray[x + i] === undefined || gameBoardArray[y][x + i] !== null) {
-        return false; // if any cell is already occupied by another ship or if ship is placed out of bounds, return false
-      }
+      const isCellOccupied = gameBoard[y][x + i] !== null;
+      if (isCellOccupied) return false;
     }
 
     for (let i = 0; i < ship.getLength(); i += 1) {
-      gameBoardArray[y].splice(x + i, 1, ship); // select correct row, itterate through each cell changing the x index replacing each one by ship object
+      gameBoard[y].splice(x + i, 1, ship);
       placedShips.push(ship);
     }
     return true;
@@ -42,14 +45,20 @@ export default function Gameboard(name) {
 
   function receiveAttack(y, x) {
     if (y < 0 || y > 10 || x < 0 || x > 10) return false;
-    if (receivedCoordinatesArray.find((coordinates) => coordinates.y === y && coordinates.x === x))
-      return false; // check if coordinates exist in array
-    if (gameBoardArray[y][x] === "missed") return false;
-    receivedCoordinatesArray.push({ y, x });
-    if (!gameBoardArray[y][x]) gameBoardArray[y].splice(x, 1, "missed");
-    if (gameBoardArray[y][x] !== "missed") {
-      gameBoardArray[y][x].hit();
-      gameBoardArray[y].splice(x, 1, { isHit: true, ship: gameBoardArray[y][x] });
+
+    const cell = gameBoard[y][x];
+    if (receivedCoordinates.some((coordinates) => coordinates.y === y && coordinates.x === x)) return false; // check if coordinates exist in array
+    if (cell === "missed") return false;
+
+    receivedCoordinates.push({ y, x });
+
+    if (!cell) {
+      gameBoard[y].splice(x, 1, "missed");
+      return true;
+    }
+    if (cell !== "missed") {
+      cell.hit();
+      gameBoard[y].splice(x, 1, { isHit: true, ship: cell });
     }
     return true;
   }
