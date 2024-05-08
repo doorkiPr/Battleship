@@ -7,21 +7,45 @@
 .shipWrapper {
   display: flex;
   gap: 5px;
-  border: 1px solid black;
-  padding: 5px;
+  border: 2px solid var(--contrast);
+  border-radius: 4px;
+  padding: 10px;
+  width: 120px;
 }
-.ship {
-  cursor: pointer;
-}
+
 #shipTable {
   justify-self: center;
-  width: 70%;
+  width: 50%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px;
 }
-
+.shipElement {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--contrast);
+  background: none;
+}
+.shipElement:hover {
+  filter: brightness(1.5);
+  scale: 1.1;
+}
+#carrierWrapper:hover {
+  color: var(--red);
+}
+#battleshipWrapper:hover {
+  color: var(--green);
+}
+#submarineWrapper:hover {
+  color: var(--blue);
+}
+#cruiserWrapper:hover {
+  color: var(--purple);
+}
+#destroyerWrapper:hover {
+  color: var(--mauve);
+}
 #creationGameboardWrapper {
   display: flex;
   flex-direction: column;

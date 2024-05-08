@@ -7,6 +7,8 @@
 .gameBoard {
   height: 500px;
   width: 500px;
+  padding: 5px;
+  border-radius: 2px;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
