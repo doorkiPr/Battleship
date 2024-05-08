@@ -26,7 +26,6 @@ export default function RenderCreatorGameboard(
   startGameBtn.textContent = "Start Game";
 
   let axis = "horizontal";
-
   toggleAxis.addEventListener("click", () => {
     axis = axis === "horizontal" ? "vertical" : "horizontal";
     toggleAxis.textContent = `${axis} axis`;
@@ -37,14 +36,15 @@ export default function RenderCreatorGameboard(
     renderGameboard(playerTwo, playerOne);
     dialog.close();
   });
-  const gameBoardArray = playerOne.getGameboard().getGameboardArray();
+
+  const gameboard = playerOne.getGameboard().getGameboardArray();
   renderShipTable(shipsArray, updateSelectedShip, wrapper);
 
-  for (let i = 0; i < gameBoardArray.length; i += 1) {
-    for (let j = 0; j < gameBoardArray.length; j += 1) {
+  for (let i = 0; i < gameboard.length; i += 1) {
+    for (let j = 0; j < gameboard.length; j += 1) {
       const cell = createHtmlElement("div", { id: `${i},${j}`, class: "cell" });
 
-      if (gameBoardArray[i][j]) cell.classList.add(gameBoardArray[i][j].getName().toLowerCase(), "ship");
+      if (gameboard[i][j]) cell.classList.add(gameboard[i][j].getName().toLowerCase(), "ship");
 
       cell.addEventListener("click", () => {
         const foundIndex = shipsArray.findIndex((ship) => ship.name === getSelectedShip());
