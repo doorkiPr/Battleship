@@ -12,34 +12,46 @@ export default function renderCell(gameBoardArray, i, j, player, enemy, renderGa
     return player.getGameboard().areAllSunk() || enemy.getGameboard().areAllSunk();
   }
 
+  function handleTurnInformation() {
+    renderInformation("turn", player, enemy);
+
+    if (player.getGameboard().areAllSunk()) renderInformation("win", player, enemy);
+    if (enemy.getGameboard().areAllSunk()) renderInformation("win", enemy, player);
+  }
+
+  function playComputerTurn() {
+    // if it is the computer's gameboard
+    enemy.toggleTurn(); // set off the turn of the enemy (human player)
+
+    setTimeout(() => {
+      computerAI().computerAttack(player, enemy);
+      renderGameboard(enemy, player);
+      renderInformation("turn", enemy, player);
+      enemy.toggleTurn(); // set it back on after the computer finished it's play
+
+      if (player.getGameboard().areAllSunk()) renderInformation("win", player, enemy);
+      if (enemy.getGameboard().areAllSunk()) renderInformation("win", enemy, player);
+    }, 400);
+  }
+
+  function handleEnemyTurn() {
+    if (enemy.attack(player, ...cell.id.split(","))) {
+      handleTurnInformation();
+
+      if (player.getNature() === "computer") {
+        playComputerTurn();
+      } else {
+        player.toggleTurn();
+        enemy.toggleTurn();
+      }
+    }
+  }
+
   cell.addEventListener("click", () => {
     if (isGameFinished()) return;
 
     if (enemy.getTurn()) {
-      if (enemy.attack(player, ...cell.id.split(","))) {
-        renderInformation("turn", player, enemy);
-
-        if (player.getGameboard().areAllSunk()) renderInformation("win", player, enemy);
-        if (enemy.getGameboard().areAllSunk()) renderInformation("win", enemy, player);
-
-        if (player.getNature() === "computer") {
-          // if it is the computer's gameboard
-          enemy.toggleTurn(); // set off the turn of the enemy (human player)
-
-          setTimeout(() => {
-            computerAI().computerAttack(player, enemy);
-            renderGameboard(enemy, player);
-            renderInformation("turn", enemy, player);
-            enemy.toggleTurn(); // set it back on after the computer finished it's play
-
-            if (player.getGameboard().areAllSunk()) renderInformation("win", player, enemy);
-            if (enemy.getGameboard().areAllSunk()) renderInformation("win", enemy, player);
-          }, 10);
-        } else {
-          player.toggleTurn();
-          enemy.toggleTurn();
-        }
-      }
+      handleEnemyTurn();
       renderGameboard(player, enemy);
     }
   });
