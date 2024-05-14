@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <title>Battleship</title>
+  </head>
+  <body>
+    <header>Battleship</header>
+    <dialog id="gamemodeDialog">
+      <div>Choose Preferred Gamemode</div>
+      <wrapper id="optionBtnWrapper">
+        <button id="aiButton" class="gamemodeButton">AI</button>
+        <button id="humanButton" class="gamemodeButton">PVP</button>
+      </wrapper>
+    </dialog>
+    <dialog id="gameCreatorDialog">
+      <form id="gameCreatorForm">
+        <wrapper id="creatorBtnWrapper">
+          <input
+            alt="Confirm player name input"
+            ype="text"
+            class="playerName"
+            required
+            minlength="1"
+            maxlength="10"
+            placeholder="input name"
+            name="playerName"
+            id="playerName"
+          />
+          <button class="confirm" id="confirmName">Proceed</button>
+        </wrapper>
+      </form>
+    </dialog>
+    <main>
+      <div class="gameboardWrapper">
+        <div class="gameboadContainer">
+          <div class="gameboardTitle one">playerOne</div>
+          <div class="gameBoard" id="human"></div>
+        </div>
+        <div class="gameboadContainer">
+          <div class="gameboardTitle two">playerTwo</div>
+          <div class="gameBoard" id="computer"></div>
+        </div>
+      </div>
+      <div class="information">
+        <div class="main"></div>
+        <div class="description"></div>
+      </div>
+    </main>
+    <footer>
+      made with love, all rights reserved <br />
+      quis nostrud exercitation
+      <span class="material-symbols-outlined"> share</span>
+    </footer>
+  </body>
+</html>
